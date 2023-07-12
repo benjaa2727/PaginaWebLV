@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{%load static%}
+
+
+
+
+
+ {%block content%}   
+
+    <div class="fondo">
+    <div class="fondopro">
+        <div id="tit_pro">
+            <h1 class="titulo_product">Productos</h1>
+        </div>
+        <div id="carousel-container">
+            <div id="carousel">
+                <img src='{% static "imaguenes/puerta.webp"%}' alt="Imagen 1" class="active">
+                <img src='{% static "imaguenes/tableros.webp"%}' alt="Imagen 2">
+                <img src='{% static "imaguenes/vigas.webp"%}' alt="Imagen 3">
+                <img src='{% static "imaguenes/vigas2.webp"%}' alt="Imagen 4">
+                <img src='{% static "imaguenes/marcos.webp"%}' alt="Imagen 5">
+            </div>
+            <div class="nav-button prev"><</div>
+            <div class="nav-button next">></div>
+        </div>
+    </div>
+    </div>
+        <script type='text/javascript' src='{% static "js/script.js"%}'></script>
+
+{%endblock%}

@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <link type='text/css' href='{% static "css/productos.css" %}' rel='stylesheet'>
+
+    <title>Lista de productos</title>
+    </head>
+
+    <body>
+        <h1>Mis Productos</h1>
+
+        <div class="productos" id="productos-container">
+        
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                type: 'GET',
+                url: '/mostrar_productos/',
+                success: function(data) {
+                    var productosContainer = $('#productos-container');
+
+                 
+                    data.productos.forEach(function(producto) {
+                        var productoElement = $('<div class="producto"></div>');
+                        productoElement.append('<img src="' + producto.foto + '" alt="' + producto.nombre + '">');
+                        productoElement.append('<h2 class="nombre">' + producto.nombre + '</h2>');
+                        productoElement.append('<p class="descripcion">' + producto.descripcion + '</p>');
+                        productoElement.append('<p class="precio">Precio: $' + producto.precio + '</p>');
+                        productoElement.append('<p class="stock">Stock: ' + producto.stock + '</p>');
+
+                        var accionesDiv = $('<div class="acciones"></div>');
+                        var cantidadDiv = $('<div class="cantidad"></div>');
+                        cantidadDiv.append('<label for="cantidad-' + producto.id + '">Cantidad:</label>');
+                        cantidadDiv.append('<div class="cantidad-input"><input type="number" id="cantidad-' + producto.id + '" name="cantidad-' + producto.id + '" min="1" max="' + producto.stock + '" value="1"></div>');
+                        accionesDiv.append(cantidadDiv);
+
+                        var agregarBtn = $('<button style="width: 300px;" class="btn-agregar" data-producto-id="' + producto.id + '">Agregar</button>');
+                        accionesDiv.append(agregarBtn);
+
+                        productoElement.append(accionesDiv);
+
+                        productosContainer.append(productoElement);
+                    });
+
+                    
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error al obtener los productos:', error);
+                }
+            });
+
+           
+            $(document).on('click', '.btn-agregar', function() {
+                var productoId = $(this).data('producto-id');
+                var cantidad = $('#cantidad-' + productoId).val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/agregar-carrito/',
+                    data: {
+                        'producto_id': productoId,
+                        'cantidad': cantidad,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        alert('Producto agregado al carrito');
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Error al agregar el producto al carrito');
+                    }
+                });
+            });
+        });
+    </script>
+    <style>
+        .btn-agregar {
+            background-color: #75382a;
+            color: white;
+            border: none;
+            padding: 2px 4px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .btn-agregar:hover {
+            background-color: #d16249;
+        }
+    </style>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}  {% load static %}
+
+
+{% block content %}
+  
+      
+      <p class="titulo">Quienes Somos</p>
+      
+      <div class="posicion_desc">
+      <div class="descripcion_empresa">
+      <p>En LA VARA queremos incorporar la calidez de la madera a sus proyectos, productos de larga duración y 
+        por ende menor impacto en el medio ambiente.
+<br>
+<br>
+        En nuestros proceso pensamos en el uso responsable de este recurso,
+        por lo que realizamos proyectos a medida,        
+        utilizamos hasta los mas pequeños trozos de la madera para realizar grandes proyectos,         
+        en todas dimensiones y formas. </p>
+      
+      </div>
+      </div>
+
+      <div class="gene">
+        <div class="foto1">
+          <img class="fo" src='{% static "imaguenes/benja.webp"%}' alt="foto 1">
+          <p class="nombre_ingre">Benjamin Lara</p>
+        </div>
+    
+        <div class="foto2">
+          <img class="fo" src='{% static "imaguenes/jonny.webp"%}' alt="foto 2">
+          <p class="nombre_ingre">Jonathan Ney</p>
+        </div>
+      </div>
+
+ 
+{% endblock%}

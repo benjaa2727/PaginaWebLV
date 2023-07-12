@@ -1,0 +1,78 @@
+{% extends 'base.html' %}  {% load static %}
+
+{% block css %}
+<link type='text/css' href='{% static "css/contac.css"%}' rel='stylesheet'>
+{% endblock %}
+
+
+{%block content%}
+
+<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+
+<div class="contact_form">
+
+  <div class="formulario">			
+    <h1>Formulario de contacto</h1>
+      <h3>Escríbenos y en breve los pondremos en contacto contigo</h3>
+
+
+        <form action="submeter-formulario.php" method="post">				
+
+          
+              <p>
+                <label for="nombre" class="colocar_nombre">Nombre
+                  <span class="obligatorio">*</span>
+                </label>
+                  <input type="text" name="introducir_nombre" id="nombre" required="obligatorio" placeholder="Escribe tu nombre">  <br>
+                  <span style = 'color: red;' id="nombre-error" class="error"></span>
+              </p>
+            
+              <p>
+                <label for="email" class="colocar_email">Email
+                  <span class="obligatorio">*</span>
+                </label>
+                  <input type="email" name="introducir_email" id="email" required="obligatorio" placeholder="Escribe tu Email">  <br>
+                  <span id="email-error" style="display: none; color: red;" >Correo electrónico inválido</span>
+              </p>
+          
+              <p>
+                <label for="telefone" class="colocar_telefono">Teléfono
+                  <span class="obligatorio">*</span>
+                </label>
+                +569 <input class="telefono" required="obligatorio" type="tel" name="introducir_telefono" minlength="8" maxlength="8"
+                id="telefono" placeholder="Escribe tu teléfono">
+              </p>		
+            
+             	
+            
+              <p>
+                <label for="asunto" class="colocar_asunto">Asunto
+                  <span class="obligatorio">*</span>
+                </label>
+                  <input type="text" name="introducir_asunto" id="assunto" required="obligatorio" placeholder="Escribe un asunto">
+              </p>		
+            
+              <p>
+                <label for="mensaje" class="colocar_mensaje">Mensaje
+                  <span class="obligatorio">*</span>
+                </label>                     
+                <textarea resize:none; name="introducir_mensaje" class="texto_mensaje" id="mensaje" required="obligatorio" placeholder="Deja aquí tu comentario..." maxlength="500"></textarea> 
+              </p>   								
+            
+              <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>
+
+              <p class="aviso">
+                <span class="obligatorio"> * </span>los campos son obligatorios.
+              </p>					
+          
+        </form>
+  </div>	
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.js"></script>
+
+   <script type='text/javascript' src='{% static "js/validacion.js"%}'></script>
+   <script type='text/javascript' src='{% static "js/vali.js"%}'></script>
+
+{%endblock%}
